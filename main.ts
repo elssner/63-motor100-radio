@@ -12,7 +12,7 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    basic.showNumber(Tempo(0.5, 70, 100, true))
+    basic.showNumber(Tempo(0.1, 70, 100, true))
 })
 function Tempo (Value: number, Min: number, Max: number, NullToNull: boolean) {
     if (Value < 0.03 && NullToNull) {
