@@ -1,7 +1,7 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (ready) {
         funkzeit_ms = input.runningTime()
-        motors.dualMotorPower(Motor.M0, receivedNumber)
+        motors.dualMotorPower(Motor.M0, Tempo(receivedNumber / 100, 70, 100, true))
         if (receivedNumber < -4) {
             basic.setLedColors(0xffffff, 0x0000ff, 0x000000)
         } else if (receivedNumber > 4) {
@@ -11,6 +11,16 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
     }
 })
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    basic.showNumber(Tempo(0.5, 70, 100, true))
+})
+function Tempo (Value: number, Min: number, Max: number, NullToNull: boolean) {
+    if (Value < 0.03 && NullToNull) {
+        return 0
+    } else {
+        return Min + Value * (Max - Min)
+    }
+}
 let funkzeit_ms = 0
 let ready = false
 radio.setTransmitPower(7)
