@@ -1,7 +1,7 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (ready) {
         funkzeit_ms = input.runningTime()
-        motors.dualMotorPower(Motor.M0, Tempo(receivedNumber / 100, 70, 100, true))
+        motors.dualMotorPower(Motor.M0, receivedNumber)
         if (receivedNumber < -4) {
             basic.setLedColors(0xffffff, 0x0000ff, 0x000000)
         } else if (receivedNumber > 4) {
